@@ -26,13 +26,28 @@ Example:
 
 ```ng generate module module_name```
 
-- Create a new component
+- Create a new directive
+
+-- structural directive: used to add elements into the DOM
+
+-- attribute directive: used to manipulate the appearance and behavior of DOM elements
+
+-- component directive: directives with templates
+
+```ng generate directive copyright```
+
+```ng generate directive autofocus --standalone``` not registered
+
+
+- Create a new component (components are angular directives with a view)
 
 ```ng generate component component_name```
 
 - Create a new pipe
 
 ```ng generate pipe sort```
+
+```ng generate pipe filter --standalone```
 
 ### Development server
 

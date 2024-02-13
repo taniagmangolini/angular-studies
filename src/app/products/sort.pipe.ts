@@ -1,7 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'sortProducts'
+  name: 'sortProducts',
+  pure: true, // executed when there is a change to the reference of the input variable
+  //pure: false //executed method every time a change detection cycle is triggered (bad performance),
+  standalone: false //registered in a module
 })
 export class SortPipe implements PipeTransform {
 

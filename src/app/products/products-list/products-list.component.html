@@ -22,3 +22,20 @@
   <p>Other variable not set!</p> 
 </ng-template> 
 <!-- if-else example - end -->
+
+
+<!-- working with directives -->
+<p appHighlight>Highlight me!</p>
+
+<p appCopyright></p> 
+
+<input appNumeric/>
+
+<h3>Offers</h3>
+<div>
+  <ng-template appProductHost></ng-template>
+</div>
+
+<div *appPermission="['admin', 'agent']">
+  allowed!
+</div>
