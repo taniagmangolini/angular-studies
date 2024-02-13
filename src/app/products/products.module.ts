@@ -6,13 +6,15 @@ import { SortPipe } from './sort.pipe';
 import { FilterPipe } from './filter.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { ProductHostDirective } from './product-host.directive';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 @NgModule({
   declarations: [
     ProductsListComponent,
     ProductDetailComponent,
     SortPipe,
-    ProductHostDirective
+    ProductHostDirective,
+    FavoritesComponent
   ],
   imports: [
     FilterPipe,

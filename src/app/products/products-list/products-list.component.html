@@ -39,3 +39,15 @@
 <div *appPermission="['admin', 'agent']">
   allowed!
 </div>
+
+<!-- loads products from a service-->
+<h2>Product List By Service</h2>
+<ul>
+  <li *ngFor="let product of productsByService| sortProducts; let i=index" (click)="selectedProduct = product">
+    {{i+1}}. {{product.name}}
+  </li>
+</ul>
+<span>Selected Product: {{productLocalReference.name}}</span>
+
+<h2>Favorites</h2>
+<app-favorites></app-favorites>
