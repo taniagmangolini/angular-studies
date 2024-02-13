@@ -30,6 +30,10 @@ Example:
 
 ```ng generate component component_name```
 
+- Create a new pipe
+
+```ng generate pipe sort```
+
 ### Development server
 
 Run `ng serve` for a dev server and navigate to `http://localhost:4200/`. 
