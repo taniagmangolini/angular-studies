@@ -1,10 +1,11 @@
 <h2>Product List</h2>
 <ul>
-  <li (click)="selectedProduct = 'Webcam'">Webcam</li>
-  <li (click)="selectedProduct = 'Microphone'">Microphone</li>
-  <li (click)="selectedProduct = 'Wireless Keyboard'">Wireless Keyboard</li>
+  <li *ngFor="let product of products ; let i=index" (click)="selectedProduct = product">
+    {{i+1}}. {{product}}
+  </li>
 </ul>
 <span>Selected Product: {{productLocalReference.name}}</span>
+
 <app-product-detail
   #productLocalReference
   [name]="selectedProduct" 
@@ -12,3 +13,12 @@
   (boughtWithParam)="onBuyWithParam($event)"
 >
 </app-product-detail>
+
+<!-- if-else example - begin -->
+<div *ngIf="otherVariable; else variableNotSet">
+  <p>Other variable is set!</p> 
+</div> 
+<ng-template #variableNotSet> 
+  <p>Other variable not set!</p> 
+</ng-template> 
+<!-- if-else example - end -->
