@@ -18,7 +18,6 @@ export class KeyLoggerComponent implements OnInit,  OnDestroy {
   //static property indicates whether the element we want to query will be available during component initialization
   @ViewChild('keyContainer', { static: true }) input: ElementRef | undefined;
   keys = '';
-  private logger: Subscription | undefined;
 
   ngOnInit(): void {
     //creates an observable from the DOM event of a native HTML element.
