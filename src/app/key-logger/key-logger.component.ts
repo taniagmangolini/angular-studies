@@ -8,6 +8,9 @@ import { fromEvent, of, from, tap, map, filter, Subscription } from 'rxjs'; //op
   // - mergeMap: all emissions are processed until completition, but the order is not kept.
   // - concatMap: all emissions are processed until completition, but sequentialy
 
+  //a particular type of observable called Subject, which extends an Observable object as it is both an observer and an observable. 
+  //It can emit values to multiple observers, whereas an Observable object unicasts only to one observer at a time.
+
 @Component({
   selector: 'app-key-logger',
   templateUrl: './key-logger.component.html',
