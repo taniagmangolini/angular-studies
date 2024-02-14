@@ -26,7 +26,7 @@ export class AppComponent {
   constructor(@Inject(APP_CONFIG) config: AppConfig) {
     //An observable will not do anything unless a subscriber subscribes to it.
     //subscribe to the title$ observable and get notified of any change
-    this.title$.subscribe(this.setTitle);
+    this.title$.subscribe(this.setTitle); 
   }
 
   private setTitle = () => {
