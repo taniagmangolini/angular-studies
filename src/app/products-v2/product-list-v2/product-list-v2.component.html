@@ -1,0 +1,17 @@
+<h2>Product List</h2>
+<ul>
+    <li *ngFor="let product of (productsByService$ | async)!" (click)="selectedProduct = product">
+        {{product.name}}
+      </li>
+  </ul>
+<ul>
+
+</ul>
+<app-product-detail-v2
+  *ngIf="selectedProduct; else noProduct"
+  [name]="selectedProduct.name"
+  (bought)="onBuy()">
+</app-product-detail-v2>
+<ng-template #noProduct>
+  <p>No product selected!</p>
+</ng-template>
