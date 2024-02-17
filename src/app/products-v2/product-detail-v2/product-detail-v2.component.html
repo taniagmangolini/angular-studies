@@ -1,14 +1,9 @@
-<h2>Product Details</h2>
-<h3>{{name}}</h3>
-<button (click)="buy()">Buy It!!</button>
-<span>{{productName}}</span>
-
-<div [ngSwitch]="name">
-    <p *ngSwitchCase="'Webcam'">
-      Product is used for video
-    </p>
-    <p *ngSwitchCase="'Microphone'">
-      Product is used for audio
-    </p>
-    <p *ngSwitchDefault>Product is for general use</p>
+<div *ngIf="product$ | async as product">
+  <h2>Product Details</h2>
+  <h3>{{product.name}}</h3>
+  <span>{{product.price | currency:'EUR'}}</span>
+  <input placeholder="New price" #price/>
+  <button (click)="changePrice(product, price.valueAsNumber)">Update price</button>
+  <button (click)="buy()">Buy Now</button>
+  <button class="delete" (click)="remove(product)">Delete</button>
 </div>
