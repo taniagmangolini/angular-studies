@@ -3,21 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/auth/auth.interceptor';;
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductsModule } from './products/products.module';
 import { ProductsV2Module } from './products-v2/products-v2.module';
+import { ProductsV3Module } from './products-v3/products-v3.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { KeyLoggerComponent } from './key-logger/key-logger.component';
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    KeyLoggerComponent
+    KeyLoggerComponent,
   ],
   imports: [
     BrowserModule,
+    ProductsV3Module, // The order that we import routing modules does matter. Features routing module needs to be imported before the AppRoutingModule
     AppRoutingModule,
     ProductsModule,
     ProductsV2Module,

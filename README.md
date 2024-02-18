@@ -16,6 +16,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ng new app_name --no-standalone
 
+ng new app_name --routing --style=css  
+
 ### Code scaffolding
 
 ng generate component|directive|pipe|service|class|guard|interface|enum|module name

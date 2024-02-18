@@ -1,3 +1,5 @@
+// This module v2 adds a crud to the app and http services consumption
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductListV2Component } from './product-list-v2/product-list-v2.component';
