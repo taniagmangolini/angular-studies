@@ -2,7 +2,7 @@ import {
   Component, EventEmitter, Input, Output, OnInit 
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'; // ActivatedRoute allows to retrieve information about the currently active route, including any parameters.
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, of } from 'rxjs';
 import { Product } from '../../shared/interfaces/product.interface';
 import { ProductsService } from '../../shared/services/products.service';;
 import { AuthService } from '../../shared/services/auth.service';
@@ -24,6 +24,8 @@ export class ProductDetailV3Component implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    /* WITHOUT A RESOLVER */
+
     /*
     // The ActivatedRoute service contains the paramMap observable, which we can use to subscribe and get route parameter values (strings)
     // Use it if you intend to update the URL parameter within the same component, then you have to use a subscription.
@@ -40,14 +42,20 @@ export class ProductDetailV3Component implements OnInit {
         console.log(params.get('sortOrder'));
       });
     */
-   
+
     /*
     Another option to get the parameter. snapshot is sync, that is,  you get the value once and that is it
     It is an immutable object representing a particular version of ActivatedRoute
     If you intend not to update your URL parameter within the same component you are accessing it, then you can use the snapshot.
     It won’t be updated, even if you change its value from within the same component.
     */
-    const id = Number(this.route.snapshot.params['id']);
-    this.product$ = this.productService.getProductsByIdFromApi(id);
+    //const id = Number(this.route.snapshot.params['id']);
+    //this.product$ = this.productService.getProductsByIdFromApi(id);
+
+    /* WITH A RESOLVER */
+
+    this.product$ = this.route.data.pipe(
+      switchMap(data => of(data['product']))
+    );
   }
 }

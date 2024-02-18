@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsListV3Component } from './products-list-v3/products-list-v3.component';
 import { ProductDetailV3Component } from './product-detail-v3/product-detail-v3.component';
+import { productDetailV3Resolver } from './product-detail-v3/product-detail-v3.resolver';
 
 const routes: Routes = [
   { 
@@ -10,7 +11,10 @@ const routes: Routes = [
     children: [
       { 
         path: ':id', 
-        component: ProductDetailV3Component 
+        component: ProductDetailV3Component,
+        resolve: {
+          product: productDetailV3Resolver
+        }
       } // as a children, the /products/:id route is not destroyed when we navigate from one product to another and its ngOnInit method is called once.
       // If there are children, Angular will use the parent's <router-outlet></router-outlet> to place the children component DOM. 
     ]
