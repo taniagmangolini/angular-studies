@@ -11,12 +11,14 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { KeyLoggerComponent } from './key-logger/key-logger.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     KeyLoggerComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

@@ -7,3 +7,7 @@ a {
 a:hover {
     opacity: 0.8;
 }
+
+.active {
+    color: black;
+}
