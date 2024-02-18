@@ -19,7 +19,8 @@ import { ProductDetailV3Component } from './product-detail-v3/product-detail-v3.
   ],
   exports: [
     ProductsListV3Component,
-    CartV3Component
+    CartV3Component,
+    ProductDetailV3Component
   ]
 })
 export class ProductsV3Module { }
