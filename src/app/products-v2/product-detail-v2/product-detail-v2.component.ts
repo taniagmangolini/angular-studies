@@ -3,6 +3,7 @@ import {
 import { Observable } from 'rxjs';
 import { Product } from '../../shared/interfaces/product.interface';
 import { ProductsService } from '../../shared/services/products.service';;
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-product-detail-v2',
@@ -16,7 +17,7 @@ export class ProductDetailV2Component implements OnChanges{
   @Output() boughtWithParam = new EventEmitter<number>();
   @Output() deleted = new EventEmitter();
 
-  constructor(private productService: ProductsService) { }
+  constructor(private productService: ProductsService, public authService: AuthService) { }
 
   ngOnChanges(): void {
     this.product$ = this.productService.getProductsByIdFromApi(this.id);

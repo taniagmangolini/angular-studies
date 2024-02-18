@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { map, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from '../interfaces/product.interface'
 
 //DTO: Data Transfer Object
@@ -44,7 +44,11 @@ export class ProductsService {
   }
 
   getProductsFromApi(): Observable<Product[]> {
-    return this.http.get<ProductDTO[]>(this.productsUrl).pipe(
+    // if you need to pass the token repeteadly along te system, it is better to use an interceptor
+    const options = {
+      headers: new HttpHeaders({ Authorization: 'someAuthorizationToken' })
+    };
+    return this.http.get<ProductDTO[]>(this.productsUrl, options).pipe(
       map(products => products.map(product => {
         return this.convertToProduct(product)
       }))
