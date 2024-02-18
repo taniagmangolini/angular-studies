@@ -8,10 +8,10 @@ Guards are used not only to prevent access to a route but also to prevent naviga
 A guard that controls if a route can be deactivated is a function of the CanDeactivateFn type.
 */
 import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn, Router, CanLoadFn } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
 
-export const authGuard: CanActivateFn = () => {
+export const authGuard: CanActivateFn | CanLoadFn = () => {
     const authService = inject(AuthService);
     const router = inject(Router);
     if (authService.isLoggedIn) { 

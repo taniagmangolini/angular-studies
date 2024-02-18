@@ -21,6 +21,7 @@ const routes: Routes = [
   },
   //{ path: 'products/:id', component: ProductDetailV3Component }, // use it if you wants to recriate the component among navigation and to open it independently. 
 ];
+
 @NgModule({
   imports: [RouterModule.forChild(routes)], //forChild method is used when we want to register routes in a feature module.
   exports: [RouterModule]
