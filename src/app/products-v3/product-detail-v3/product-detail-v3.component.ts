@@ -16,6 +16,7 @@ import { AuthService } from '../../shared/services/auth.service';
 export class ProductDetailV3Component implements OnInit {
   @Input() id: number | undefined = -1;
   product$: Observable<Product> | undefined;
+  price: number | undefined;
 
   constructor(
     private productService: ProductsService, 
@@ -57,5 +58,9 @@ export class ProductDetailV3Component implements OnInit {
     this.product$ = this.route.data.pipe(
       switchMap(data => of(data['product']))
     );
+  }
+
+  changePrice(product: Product, price?: Number) {
+    console.log(' ENTROU', this.price)
   }
 }

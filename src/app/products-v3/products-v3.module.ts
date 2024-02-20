@@ -2,6 +2,7 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsListV3Component } from './products-list-v3/products-list-v3.component';
 import { CartV3Component } from './cart-v3/cart-v3.component';
 import { ProductsV3RoutingModule } from './products-v3-routing.module';
@@ -15,7 +16,9 @@ import { ProductDetailV3Component } from './product-detail-v3/product-detail-v3.
   ],
   imports: [
     CommonModule,
-    ProductsV3RoutingModule
+    ProductsV3RoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     ProductsListV3Component,
