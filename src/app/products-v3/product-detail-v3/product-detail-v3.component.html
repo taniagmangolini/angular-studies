@@ -8,6 +8,9 @@
       <input placeholder="New price" name="price" [(ngModel)]="price" />
       <button type="submit">Change</button>
     </form>
+
+    <!-- React-driven form-->
+    <app-product-create-v3 (added)="onAdd($event)"></app-product-create-v3>
 </div>
 
 

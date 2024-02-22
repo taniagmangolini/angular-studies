@@ -1,0 +1,19 @@
+/*
+ng-untouched: Indicates that we have not interacted with the control
+ng-touched: Indicates that we have interacted with the control
+ng-dirty: Indicates that we have set a value to the control
+ng-pristine: Indicates that the control does not have a value yet
+ng-valid: Indicates that the value of the control is valid
+ng-invalid: Indicates that the value of the control is not valid*/
+
+input.ng-touched {
+    border: 3px solid lightblue;
+}
+
+input.ng-dirty.ng-valid {
+    border: 2px solid green;
+}
+
+input.ng-dirty.ng-invalid {
+    border: 2px solid red;
+}

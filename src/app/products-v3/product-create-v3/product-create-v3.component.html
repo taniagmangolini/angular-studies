@@ -1,0 +1,41 @@
+<form [formGroup]="productForm" (ngSubmit)="createProduct()">
+    <div>
+      <label for="name">Name</label>
+      <input id="name" formControlName="name" required/>
+      <span *ngIf="name.touched && name.invalid">
+        The name is not valid
+      </span>
+    </div>
+    <div>
+      <label for="price">Price</label>
+      <input id="price" formControlName="price" required/>
+      <span *ngIf="price.touched && price.hasError('required')">
+        The price is required
+      </span>
+      <span *ngIf="price.touched && price.hasError('outOfRange')">
+        The price is out of range
+      </span>
+    </div>
+    <div>
+      <button type="submit" [disabled]="!productForm.valid">Create</button>
+    </div>
+    <!-- Child form: the value of the child form also propagates up the hierarchy -->
+    <!-- A better option to create more elegant forms is to use FormBuilder -->
+    <!---
+    <form formGroupName="info">
+        <h2>Product information</h2>
+        <div>
+          <label for="category">Category</label>
+          <input id="category" formControlName="category" />
+        </div>
+        <div>
+          <label for="descr">Description</label>
+          <input id="descr" formControlName="description" />
+        </div>
+        <div>
+          <label for="photo">Photo URL</label>
+          <input id="photo" formControlName="image" />
+        </div>
+      </form>
+    -->
+</form>

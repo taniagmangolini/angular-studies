@@ -63,4 +63,9 @@ export class ProductDetailV3Component implements OnInit {
   changePrice(product: Product, price?: Number) {
     console.log(' ENTROU', this.price)
   }
+
+  onAdd(product: Product) {
+    window.alert(`Added ${product.name}!`);
+  }
+
 }
