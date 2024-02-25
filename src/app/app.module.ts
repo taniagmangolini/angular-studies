@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { AuthInterceptor } from './core/auth/auth.interceptor';;
 
 import { AppComponent } from './app.component';
@@ -29,6 +31,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     CoreModule,
     SharedModule,
     HttpClientModule,
+    ReactiveFormsModule, //Reactive forms are built around the FormGroup and FormControl classes and FormArray is an extension of these, designed to handle dynamic form controls.
+    CommonModule
   ],
   providers: [
     { 

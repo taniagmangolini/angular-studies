@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Product } from '../../shared/interfaces/product.interface';
 import { ProductsService } from '../../shared/services/products.service';
@@ -10,9 +10,11 @@ import { priceRangeValidator } from '../price-range.directive';
   templateUrl: './product-create-v3.component.html',
   styleUrl: './product-create-v3.component.css'
 })
-export class ProductCreateV3Component {
+export class ProductCreateV3Component implements OnInit {
 
   @Output() added = new EventEmitter<Product>();
+
+  showPriceRangeHint = false;
 
   // Without FormBuilder
   /*
@@ -43,8 +45,9 @@ export class ProductCreateV3Component {
     })
   });
 
+ 
   constructor(private productsService: ProductsService, private builder: FormBuilder) {}
-  
+
   get name() { return this.productForm.controls.name }
     
   get price() { return this.productForm.controls.price }
@@ -53,6 +56,39 @@ export class ProductCreateV3Component {
     this.productForm = this.builder.nonNullable.group({
       name: this.builder.nonNullable.control(''),
       price: this.builder.nonNullable.control<number | undefined>(undefined, {})
+    });
+  }
+
+  ngOnInit(): void {
+    /*
+    The FormGroup class contains two methods that we can use to change the values of a form programmatically:
+    - setValue: Replaces values in all the controls of the form
+    - patchValue: Updates values in specific controls of the form
+    */
+   /*
+    // all controls
+    this.productForm.setValue({
+      name: 'New product',
+      price: 150
+    });
+    */
+
+    // specific controls
+    this.productForm.patchValue({
+      price: 150
+    });
+
+    /*
+    A FormControl instance contains two observable properties: statusChanges and valueChanges. 
+    The first one notifies us when the status of the control changes, such as going from invalid to valid. 
+    On the other hand, the second one notifies us when the value of the control changes.
+    The valueChanges and statusChanges properties in a FormControl instance are standard observable streams. 
+    Do not forget to unsubscribe from them when the component is destroyed.
+    */
+    this.price.valueChanges.subscribe(price => {
+      if (price) {
+        this.showPriceRangeHint = price > 1 && price < 10000; 
+      }
     });
   }
 

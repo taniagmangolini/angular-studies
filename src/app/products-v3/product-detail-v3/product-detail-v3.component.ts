@@ -6,7 +6,7 @@ import { Observable, switchMap, of } from 'rxjs';
 import { Product } from '../../shared/interfaces/product.interface';
 import { ProductsService } from '../../shared/services/products.service';;
 import { AuthService } from '../../shared/services/auth.service';
-
+import { CartService } from '../../shared/services/cart.service';
 
 @Component({
   selector: 'app-product-detail-v3',
@@ -21,8 +21,10 @@ export class ProductDetailV3Component implements OnInit {
   constructor(
     private productService: ProductsService, 
     public authService: AuthService,
-    private route: ActivatedRoute
-    ) { }
+    private route: ActivatedRoute,
+    private cartService: CartService
+
+  ) { }
 
   ngOnInit(): void {
     /* WITHOUT A RESOLVER */
@@ -66,6 +68,10 @@ export class ProductDetailV3Component implements OnInit {
 
   onAdd(product: Product) {
     window.alert(`Added ${product.name}!`);
+  }
+
+  buy(product: Product) {
+    this.cartService.addProduct(product);
   }
 
 }
