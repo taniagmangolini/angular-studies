@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Product } from '../../shared/interfaces/product.interface';
 import { ProductsService } from '../../shared/services/products.service';
 import { priceRangeValidator } from '../price-range.directive';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-create-v3',
@@ -14,7 +15,15 @@ export class ProductCreateV3Component implements OnInit {
 
   @Output() added = new EventEmitter<Product>();
 
+  products: Product[] = [];
+
+  products$: Observable<Product[]> | undefined;
+
   showPriceRangeHint = false;
+  
+  isChecked = false;
+
+  categories = ['Hardware', 'Computers', 'Clothing', 'Software'];
 
   // Without FormBuilder
   /*
@@ -90,6 +99,14 @@ export class ProductCreateV3Component implements OnInit {
         this.showPriceRangeHint = price > 1 && price < 10000; 
       }
     });
+
+    this.productsService.getProductsFromApi().subscribe(products => {
+      this.products = products;
+    });
+
+    this.products$ = this.name.valueChanges.pipe(
+      map(name => this.products.filter(product => product.name.startsWith(name)))
+    );
   }
 
   createProduct() {
@@ -99,4 +116,5 @@ export class ProductCreateV3Component implements OnInit {
       this.added.emit(product);
     });
   }
+
 }

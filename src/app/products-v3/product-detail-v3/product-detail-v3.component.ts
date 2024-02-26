@@ -2,11 +2,13 @@ import {
   Component, EventEmitter, Input, Output, OnInit 
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'; // ActivatedRoute allows to retrieve information about the currently active route, including any parameters.
-import { Observable, switchMap, of } from 'rxjs';
+import { filter, Observable, switchMap, of } from 'rxjs';
 import { Product } from '../../shared/interfaces/product.interface';
 import { ProductsService } from '../../shared/services/products.service';;
 import { AuthService } from '../../shared/services/auth.service';
 import { CartService } from '../../shared/services/cart.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PriceComponent } from '../price/price.component';
 
 @Component({
   selector: 'app-product-detail-v3',
@@ -22,8 +24,8 @@ export class ProductDetailV3Component implements OnInit {
     private productService: ProductsService, 
     public authService: AuthService,
     private route: ActivatedRoute,
-    private cartService: CartService
-
+    private cartService: CartService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -63,7 +65,17 @@ export class ProductDetailV3Component implements OnInit {
   }
 
   changePrice(product: Product, price?: Number) {
-    console.log(' ENTROU', this.price)
+    /*The open method of the MatDialog service returns an afterClosed observable property that we can subscribe to, 
+    which will enable us to be notified when the dialog closes. The observable emits any value that is sent back from the dialog. 
+    Note that we check whether a value is returned from the dialog using the filter RxJS operator because the Cancel button does
+    not return a value at all.
+    */
+    this.dialog.open(PriceComponent).afterClosed().pipe(
+      filter(price => !!price),
+      switchMap(price => this.productService.updateProduct(product, price))
+    ).subscribe(() => {
+      alert(`The price of ${product.name} was changed!`);
+    });
   }
 
   onAdd(product: Product) {

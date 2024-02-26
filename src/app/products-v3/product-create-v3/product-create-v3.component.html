@@ -1,12 +1,25 @@
 <form [formGroup]="productForm" (ngSubmit)="createProduct()">
     <div>
+      <!--
       <label for="name">Name</label>
       <input id="name" formControlName="name" required/>
       <span *ngIf="name.touched && name.invalid">
         The name is not valid
       </span>
+      -->
+      <!-- with angular material -->
+      <mat-form-field>
+        <input formControlName="name" placeholder="Name" [matAutocomplete]="productsAuto" required matInput />
+        <mat-error>The name is not valid</mat-error>
+      </mat-form-field>
+      <mat-autocomplete #productsAuto="matAutocomplete">
+        <mat-option *ngFor="let product of products$ | async" [value]="product.name">
+          {{product.name}}
+        </mat-option>
+      </mat-autocomplete>
     </div>
     <div>
+      <!--
       <label for="price">Price</label>
       <input id="price" formControlName="price" required/>
       <span *ngIf="price.touched && price.hasError('required')">
@@ -18,10 +31,20 @@
       <span *ngIf="showPriceRangeHint">
         Price should be between 1 and 10000
       </span>
+      -->
+      <!-- with angular material -->
+      <mat-form-field>
+        <input formControlName="price" placeholder="Price" required matInput />
+        <mat-error>The price is required</mat-error> <!-- displayed when a validation rule is violated -->
+        <mat-hint> <!-- always displayed in input controls -->
+            Price should be between 1 and 10000
+        </mat-hint>
+      </mat-form-field>
     </div>
     <div>
-      <button type="submit" [disabled]="!productForm.valid">Create</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!productForm.valid">Create</button>
     </div>
+
     <!-- Child form: the value of the child form also propagates up the hierarchy -->
     <!-- A better option to create more elegant forms is to use FormBuilder -->
     <!---
@@ -41,4 +64,24 @@
         </div>
       </form>
     -->
+    <div>
+      <mat-form-field>
+        <mat-label>Categories</mat-label>
+        <mat-select multiple>
+          <mat-option *ngFor="let category of categories" [value]="category">
+            {{category}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-checkbox color="primary" [checked]="isChecked">Check me</mat-checkbox>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Production date" [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
 </form>

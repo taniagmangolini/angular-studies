@@ -1,8 +1,46 @@
 <h2>Product List</h2>
-<ul>
-    <li *ngFor="let product of products" (click)="selectedProduct = product">
-      <a [routerLink]="['./', product.id]">{{product.id}} - {{product.name}} - {{product.price}}</a>
+
+<!-- without material -->
+
+<!--<ul> -->
+    <!--<li *ngFor="let product of products" (click)="selectedProduct = product">-->
+      <!--<a [routerLink]="['./', product.id]">{{product.id}} - {{product.name}} - {{product.price}}</a>-->
       <!-- another option: this.router.navigate(['./', product.id], { relativeTo: this.route }); -->
-    </li>
-</ul>
+    <!--</li>-->
+<!--</ul>-->
+
+<!-- with material -->
+
+<!-- a simple list -->
+<!--
+<mat-list>
+  <mat-list-item *ngFor="let product of products">
+    {{product.name}}
+  </mat-list-item>
+</mat-list>
+-->
+
+<!-- tith a grid list composed by 3 columns-->
+<!-- the space between rows by setting the gutterSize property measured in pixels -->
+<!-- properties of mat-grid-tile:
+  - colspan: Decides how many columns the tile should take
+  - rowspan: Indicates how many rows the tile should take
+-->
+<!--
+<mat-grid-list cols="3" rowHeight="100px" gutterSize="50">
+  <mat-grid-tile *ngFor="let product of products">
+    {{product.name}}
+  </mat-grid-tile>
+</mat-grid-list>
+-->
+
+<!-- a selectable list -->
+<div>
+  <mat-selection-list>
+    <mat-list-option *ngFor="let product of products">
+      <a [routerLink]="['./', product.id]">{{product.id}} - {{product.name}} - {{product.price}}</a>-
+    </mat-list-option>
+  </mat-selection-list>
+</div>
+
 <router-outlet></router-outlet> <!-- necessary to diplay children components -->

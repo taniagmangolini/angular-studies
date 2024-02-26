@@ -51,15 +51,25 @@ Example:
 
 ```ng generate pipe filter --standalone```
 
+
+### Add Angular Material
+
+```ng add @angular/material```
+
+ou 
+
+```@angular/material@version```
+
 ### Development server
 
 Run `ng serve` for a dev server and navigate to `http://localhost:4200/`. 
-
 
 ### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+
