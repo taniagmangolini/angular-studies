@@ -15,7 +15,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTableModule } from '@angular/material/table' 
+import { MatSortModule } from '@angular/material/sort'
+import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatDialogModule } from '@angular/material/dialog';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ProductsListV3Component } from './products-list-v3/products-list-v3.component';
 import { CartV3Component } from './cart-v3/cart-v3.component';
 import { ProductsV3RoutingModule } from './products-v3-routing.module';
@@ -44,6 +48,10 @@ import { PriceComponent } from './price/price.component';
     MatDatepickerModule,
     MatGridListModule,
     MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    DragDropModule,
     MatAutocompleteModule,
     ProductsV3RoutingModule,
     FormsModule,
